@@ -9,7 +9,7 @@ async function inserirProdutoController(req, res) {
         const quantidadeMaxima = req.body.quantidadeMaxima;
         
         if(isNaN(quantidade) || isNaN(quantidadeMinima) || isNaN(quantidadeMaxima)){
-          res.status(400).send(responseBuilder(400, "Parametros Incorretos"));
+          res.status(400).send(responseBuilder(400, "Parametros Incorretos."));
           return;
         }
 
@@ -86,7 +86,7 @@ async function atualizarProdutoController(req, res) {
 
     console.log([produto, quantidade, quantidadeMinima, quantidadeMaxima]);
     if(isNaN(quantidade) || isNaN(quantidadeMinima) || isNaN(quantidadeMaxima) || [produto, quantidade, quantidadeMinima, quantidadeMaxima].every(element => element == null)){
-      res.status(400).send(responseBuilder(400, "Parametros Incorretos"));
+      res.status(400).send(responseBuilder(400, "Parametros Incorretos."));
       return;
     }
     const produtoId = await atualizarProduto(numeroProduto, [produto, quantidade, quantidadeMinima, quantidadeMaxima]);
