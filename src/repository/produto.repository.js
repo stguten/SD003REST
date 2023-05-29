@@ -1,5 +1,4 @@
 import db from "../config/sqlite.config.js";
-import {readFileSync} from "fs";
 
 async function inserirProduto(dados) {
   return new Promise((resolve, reject) => {

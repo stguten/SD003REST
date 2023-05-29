@@ -65,7 +65,7 @@ async function removerProdutoController(req, res) {
       return;
     }
 
-    res.status(200).send(responseBuilder(200, `${numeroProduto} deletado do sistema.`));
+    res.status(204).send(responseBuilder(204, `${numeroProduto} deletado do sistema.`));
   } catch (error) {
     res.status(500).send(500, "Erro interno no servidor.\n"+error);
   }
@@ -90,7 +90,7 @@ async function atualizarProdutoController(req, res) {
       return;
     }
     const produtoId = await atualizarProduto(numeroProduto, [produto, quantidade, quantidadeMinima, quantidadeMaxima]);
-    res.status(202).send(responseBuilder(202, `O codigo do produto cadastrado e: ${produtoId}`));
+    res.status(200).send(responseBuilder(200, `Produto ${produtoId} atualizado com sucesso.`));
   } catch (error) {
       res.status(500).send(responseBuilder(500, `Ocorreu um erro: ${error}`));
   } 
