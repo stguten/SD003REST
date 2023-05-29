@@ -9,6 +9,4 @@ produtos.post("/inserir-produto", inserirProdutoController);
 produtos.delete("/deletar-produto/:numeroProduto", removerProdutoController);
 produtos.put("/atualizar-produto/:numeroProduto", atualizarProdutoController);
 
-
-
 export default produtos;

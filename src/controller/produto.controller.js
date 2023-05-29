@@ -14,7 +14,7 @@ async function inserirProdutoController(req, res) {
         }
 
         const produtoId = await inserirProduto([produto, quantidade, quantidadeMinima, quantidadeMaxima]);
-        res.status(202).send(responseBuilder(202, `O codigo do produto cadastrado e: ${produtoId}`));
+        res.status(201).send(responseBuilder(201, `O codigo do produto cadastrado e: ${produtoId}`));
     } catch (error) {
         res.status(500).send(responseBuilder(500, `Ocorreu um erro: ${error}`));
     }
