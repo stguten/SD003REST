@@ -29,8 +29,7 @@ async function buscarProdutoController(req, res) {
       return;
     }
 
-    const produto = await buscarProduto(parseInt(req.query.numeroProduto));
-    console.log(produto);
+    const produto = await buscarProduto(parseInt(req.params.numeroProduto));
     if(produto == undefined){
       res.status(404).send(responseBuilder(404, "Produto não encontrado."));
       return;
@@ -84,7 +83,6 @@ async function atualizarProdutoController(req, res) {
     const quantidadeMinima = req.body.quantidadeMinima || null;    
     const quantidadeMaxima = req.body.quantidadeMaxima || null;
 
-    console.log([produto, quantidade, quantidadeMinima, quantidadeMaxima]);
     if(isNaN(quantidade) || isNaN(quantidadeMinima) || isNaN(quantidadeMaxima) || [produto, quantidade, quantidadeMinima, quantidadeMaxima].every(element => element == null)){
       res.status(400).send(responseBuilder(400, "Parametros Incorretos."));
       return;

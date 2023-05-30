@@ -26,7 +26,9 @@ async function buscarProduto(numeroProduto) {
         if (err) return reject(err);
         return resolve(rows);
       });
-    } catch (error) {}
+    } catch (error) {      
+      console.error(error);
+    }
   });
 }
 
@@ -55,7 +57,7 @@ async function removerProduto(numeroProduto) {
         }
       );
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   });
 }
