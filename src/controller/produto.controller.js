@@ -50,23 +50,21 @@ async function listarProdutosController(req, res) {
 }
 
 async function removerProdutoController(req, res) {
-  const numeroProduto = req.param.numeroProduto;
+  const numeroProduto = req.params.numeroProduto;
   try {
     if(!isNaN(req.param.numeroProduto)){
       res.status(400).send(400, responseBuilder(400, "Argumentos invalidos."));
       return;
     }
-
     const produto = await removerProduto(parseInt(numeroProduto));
 
     if(produto == undefined || produto == 0){
       res.status(404).send(responseBuilder(404, "Produto não encontrado."));
       return;
     }
-
-    res.status(204).send(responseBuilder(204, `${numeroProduto} deletado do sistema.`));
+    res.status(200).send(responseBuilder(204, `O produto ${numeroProduto} deletado do sistema.`));
   } catch (error) {
-    res.status(500).send(500, "Erro interno no servidor.\n"+error);
+    res.status(500).send(responseBuilder(500, "Erro interno no servidor: " + error));
   }
 }
 
@@ -87,7 +85,13 @@ async function atualizarProdutoController(req, res) {
       res.status(400).send(responseBuilder(400, "Parametros Incorretos."));
       return;
     }
+
     const produtoId = await atualizarProduto(numeroProduto, [produto, quantidade, quantidadeMinima, quantidadeMaxima]);
+    if(produtoId === 0) {
+      res.status(404).send(responseBuilder(404, `Produto ${produtoId} não encontrado na database.`));
+      return;
+    }
+
     res.status(200).send(responseBuilder(200, `Produto ${produtoId} atualizado com sucesso.`));
   } catch (error) {
       res.status(500).send(responseBuilder(500, `Ocorreu um erro: ${error}`));

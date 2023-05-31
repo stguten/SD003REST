@@ -15,7 +15,7 @@ process.on('SIGINT', () => {
     if (err) {
       console.error(err.message);
     } else {
-      console.log('Conexão com o banco de dados fechada com sucesso.');
+      console.info('Conexão com o banco de dados fechada com sucesso.');
     }
     process.exit(0);
   });

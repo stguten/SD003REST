@@ -4,8 +4,8 @@ import { atualizarProdutoController, buscarProdutoController, inserirProdutoCont
 const produtos = Router();
 
 produtos.get("/", listarProdutosController);
-produtos.get("/buscar-produto/:numeroProduto", buscarProdutoController);
 produtos.post("/inserir-produto", inserirProdutoController);
+produtos.get("/buscar-produto/:numeroProduto", buscarProdutoController);
 produtos.delete("/deletar-produto/:numeroProduto", removerProdutoController);
 produtos.put("/atualizar-produto/:numeroProduto", atualizarProdutoController);
 

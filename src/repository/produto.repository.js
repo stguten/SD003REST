@@ -51,7 +51,7 @@ async function removerProduto(numeroProduto) {
       db.run(
         "DELETE FROM produtos where id = ?",
         numeroProduto,
-        function (err) {
+        function (err) { 
           if (err) return reject("Ocorreu um erro!");
           return resolve(this.changes);
         }
@@ -76,7 +76,7 @@ async function atualizarProduto(numeroProduto, dadosAtualizacao) {
   query = query.slice(0, -2);
   query += ' WHERE id = ?';
   params.push(numeroProduto);
-  return new Promise((reject, resolve) => { 
+  return new Promise((resolve, reject) => { 
       db.run("BEGIN");
       db.run(query, params, function (error) {
         if (error) {
@@ -84,7 +84,7 @@ async function atualizarProduto(numeroProduto, dadosAtualizacao) {
           console.error("Erro ao salvar registro:", error);
           return reject(error);
         }
-        db.run("COMMIT");
+        db.run("COMMIT");       
         return resolve(this.changes);
       });    
   });
